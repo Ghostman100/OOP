@@ -9,7 +9,7 @@ using namespace std;
 Shape* factory(const string type)
 {
     static std::random_device rd;
-    std::uniform_int_distribution<int> rand_coord(0, 1000), rand_radius(1, 100), rand_num(0, 12);
+    std::uniform_int_distribution<int> rand_coord(0, 1000), rand_radius(1, 100), rand_num(0, 3);
 
     if (type == "Point")
         return new Point(rand_coord(rd), rand_coord(rd));

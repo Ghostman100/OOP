@@ -8,6 +8,9 @@ public:
     {
 
     }
+    ~MyElement(){
+        delete &m_element;
+    }
 
     T m_element;
     MyElement<T>* m_next;
@@ -104,11 +107,20 @@ public:
     }
 
     void clearContainer(){
+//        MyElement<T>* i = m_first;
+//        while(i != m_last){
+//            MyElement<T>* temp = i->m_next;
+//            delete i->m_element;
+//            i = temp;
+//        }
+//        delete i->m_element;
+//        m_size=0;
         MyElement<T>* temp;
         while(m_first != NULL)
         {
             temp = m_first->m_next;
-            m_first =temp;
+            delete m_first;
+            m_first = temp;
         }
         m_size=0;
     }

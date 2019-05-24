@@ -31,11 +31,15 @@ private:
 
 int Shape::sm_amount = 0;
 
-class Point : public Shape, Named
+class Point : public Shape, public Named
 {
 public:
     Point(float x, float y): Named("Point"), m_x(x), m_y(y)
     {
+
+    }
+
+    Point(Point const& copy): Named("Point"), m_x(copy.getX()), m_y(copy.getY()){
 
     }
 
@@ -76,7 +80,7 @@ float getLength(Point const& a, Point const& b) {
 class Circle : public Shape, Named
 {
 public:
-    Circle(Point const& center, float radius): Named("Circle"), m_center(center), m_radius(radius)
+    Circle(Point const &center, float radius): Named("Circle"), m_center(center), m_radius(radius)
     {
         if (radius <= 0)
                 throw std::logic_error("wrong radius for circle");
@@ -111,7 +115,7 @@ private:
     float m_radius;
 };
 
-class Rect : public Shape, Named
+class Rect : public Shape, public Named
 {
 public:
     Rect(Point const& a, Point const& b): Named("Rect"), m_a(a), m_b(b)
@@ -139,7 +143,7 @@ private:
   Point m_a, m_b;
 };
 
-class Square: public Shape, Named
+class Square: public Shape, public Named
 {
 public:
     Square(Point const& a, Point const& b): Named("Square"), m_a(a), m_b(b)
@@ -167,7 +171,7 @@ private:
     Point m_a, m_b;
 };
 
-class Polyline: public Shape, Named
+class Polyline: public Shape, public Named
 {
 public:
 
@@ -214,7 +218,7 @@ private:
     Container<Point> m_points;
 };
 
-class Polygone: public Shape, Named {
+class Polygone: public Shape, public Named {
 public:
     Polygone(Container<Point> const &points): Named("Polygon"), m_points(points)
     {

@@ -8,11 +8,11 @@ public:
 
 class Named : public Printable {
 public:
-    std::string getInfo() const
+    virtual std::string getInfo() const
     {
         return m_name;
     }
-    Named(std::string name): m_name(name)
+    Named(std::string const& name): m_name(name)
     {
     }
 private:
